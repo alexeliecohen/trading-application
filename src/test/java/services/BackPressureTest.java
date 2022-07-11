@@ -61,6 +61,7 @@ public class BackPressureTest {
           @Override
           protected void hookOnSubscribe(Subscription subscription) {
             request(3);
+            System.out.println("hello world");
           }
 
           @Override

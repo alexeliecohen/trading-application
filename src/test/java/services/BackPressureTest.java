@@ -66,7 +66,7 @@ public class BackPressureTest {
           @Override
           protected void hookOnNext(Integer value) {
             System.out.printf("value = %d\n", value);
-            if (value == 3) {
+            if (value == 5) {
               hookOnCancel();
             }
             super.hookOnNext(value);

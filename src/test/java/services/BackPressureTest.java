@@ -60,7 +60,7 @@ public class BackPressureTest {
         .subscribe(new BaseSubscriber<Integer>() {
           @Override
           protected void hookOnSubscribe(Subscription subscription) {
-            request(3);
+            request(4);
           }
 
           @Override

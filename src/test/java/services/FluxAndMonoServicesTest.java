@@ -1,7 +1,7 @@
 package services;
 
 import org.junit.jupiter.api.Test;
-import service.FluxAndMonoServices;
+import com.tradingapplication.service.FluxAndMonoServices;
 
 import static reactor.test.StepVerifier.create;
 

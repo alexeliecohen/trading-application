@@ -1,6 +1,9 @@
 package service;
 
-import exception.BookException;
+import com.tradingapplication.exception.BookException;
+import com.tradingapplication.service.BookInfoService;
+import com.tradingapplication.service.BookService;
+import com.tradingapplication.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,8 +11,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.test.StepVerifier;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class BookServiceMockTest {
@@ -42,6 +43,7 @@ class BookServiceMockTest {
   }
   @Test
   void getBooksMockOnError() {
+    System.out.println("err");
     Mockito.when(bookInfoService.getBooks())
         .thenCallRealMethod();
 

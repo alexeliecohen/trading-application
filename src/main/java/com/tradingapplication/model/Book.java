@@ -1,4 +1,4 @@
-package model;
+package com.tradingapplication.model;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model;
+package com.tradingapplication.model;
 
 public class BookInfo {
   private long id;

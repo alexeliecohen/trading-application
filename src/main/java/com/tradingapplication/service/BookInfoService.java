@@ -1,6 +1,6 @@
-package service;
+package com.tradingapplication.service;
 
-import model.BookInfo;
+import com.tradingapplication.model.BookInfo;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

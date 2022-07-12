@@ -26,12 +26,14 @@ ext {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.apache.kafka:kafka-streams'
     implementation 'org.flywaydb:flyway-core'
     implementation 'io.rsocket:rsocket-core:1.1.2'
     implementation 'io.rsocket:rsocket-transport-netty:1.1.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.4'
+    implementation 'org.springframework:spring-messaging:5.3.21'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

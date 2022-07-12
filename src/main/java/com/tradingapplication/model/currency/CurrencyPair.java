@@ -1,6 +1,7 @@
 package com.tradingapplication.model.currency;
 
 public class CurrencyPair {
+  private int id;
   private String name;
   private double rate;
   private long amount;
@@ -8,7 +9,8 @@ public class CurrencyPair {
   public CurrencyPair() {
   }
 
-  public CurrencyPair(String name, double rate, long amount) {
+  public CurrencyPair(int id, String name, double rate, long amount) {
+    this.id = id;
     this.name = name;
     this.rate = rate;
     this.amount = amount;

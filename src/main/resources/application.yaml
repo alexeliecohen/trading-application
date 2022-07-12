@@ -1,6 +1,13 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: testpassword
   rsocket:
     server:
       port: 7000
   main:
     lazy-initialization: true
+#  flyway:
+#    baselineOnMigrate: true
+#    validateOnMigrate: false

@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @Slf4j
-//@RestController("/v1/trading-application/currency-pair")
 public class CurrencyPairRSocketController {
 
 //  @GetMapping
@@ -21,7 +20,7 @@ public class CurrencyPairRSocketController {
   }
 
 //  @GetMapping("{id}")
-  @MessageMapping("Get currency pair")
+  @MessageMapping("getCurrencyPair")
   public Mono<CurrencyPair> getCurrencyPair(@PathVariable @Valid @Min(1) int id) {
     log.info("Received currency pair id: " + id);
     return Mono.just(new CurrencyPair(id, "CADUSD", 1.35, 100));

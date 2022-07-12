@@ -5,7 +5,7 @@ spring:
     password: testpassword
   rsocket:
     server:
-      port: 7000
+      port: 8000
   main:
     lazy-initialization: true
 #  flyway:

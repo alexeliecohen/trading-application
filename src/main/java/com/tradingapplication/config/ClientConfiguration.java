@@ -11,6 +11,7 @@ import java.time.Duration;
 public class ClientConfiguration {
 
   @Bean
+
   public RSocketRequester getRSocketRequester() {
     RSocketRequester.Builder builder = RSocketRequester.builder();
 
@@ -20,6 +21,6 @@ public class ClientConfiguration {
                 rSocketConnector.reconnect(Retry.fixedDelay(2, Duration.ofSeconds(2)))
         )
         .dataMimeType(MimeTypeUtils.APPLICATION_JSON)
-        .tcp("localhost", 7000);
+        .tcp("localhost", 8000);
   }
 }

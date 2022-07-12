@@ -14,23 +14,19 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication//(exclude={DataSourceAutoConfiguration.class})
 @Slf4j
 @Controller
 public class TradingApplication {
-
-
   public static void main(String[] args) {
-//    fly.setBaselineOnMigrate(true);
     SpringApplication.run(TradingApplication.class, args);
   }
 
 //  @GetMapping( "/{id}")
-  @MessageMapping("Get currency pair")
+//  @MessageMapping("Get currency pair")
 //  public Mono<CurrencyPair> getCurrencyPair(@PathVariable @Valid @Min(1) int id) {
-  public Mono<CurrencyPair> getCurrencyPair() {
-    log.info("Received currency pair id: ");
-    return Mono.just(new CurrencyPair(0, "CADUSD", 1.35, 100));
-  }
+//  public Mono<CurrencyPair> getCurrencyPair() {
+//    log.info("Received currency pair id: ");
+//  }
 
 }

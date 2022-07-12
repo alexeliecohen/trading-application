@@ -1,4 +1,4 @@
-package com.tradingapplication.model;
+package com.tradingapplication.model.currency;
 
 public class CurrencyPair {
   private String name;

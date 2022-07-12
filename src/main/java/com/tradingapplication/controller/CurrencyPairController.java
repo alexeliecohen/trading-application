@@ -1,6 +1,6 @@
 package com.tradingapplication.controller;
 
-import com.tradingapplication.model.CurrencyPair;
+import com.tradingapplication.model.currency.CurrencyPair;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;

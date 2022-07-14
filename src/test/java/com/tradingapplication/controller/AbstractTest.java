@@ -1,8 +1,8 @@
-package com.tradingapplication.config;
+package com.tradingapplication.controller;
 
-import io.rsocket.frame.decoder.PayloadDecoder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import io.rsocket.transport.netty.client.TcpClientTransport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.messaging.rsocket.RSocketRequester;
@@ -12,12 +12,14 @@ import reactor.util.retry.Retry;
 
 import java.time.Duration;
 
-@Configuration
-public class ClientConfiguration {
+public abstract class AbstractTest {
 
-  @Bean
+  @Value("${spring.rsocket.server.port}")
+  private int serverPort;
+  @Autowired
+  private RSocketRequester.Builder builder;
 
-  public RSocketRequester getRSocketRequester() {
+  protected RSocketRequester createRSocketRequester() {
     RSocketStrategies strategies = RSocketStrategies.builder()
         .encoders(encoders -> {
           encoders.add(new Jackson2JsonEncoder());
@@ -28,7 +30,7 @@ public class ClientConfiguration {
         .build();
     RSocketRequester.Builder builder = RSocketRequester.builder();
 
-    return builder
+    return this.builder
         .rsocketStrategies(strategies)
         .rsocketConnector(
             rSocketConnector ->
@@ -36,6 +38,6 @@ public class ClientConfiguration {
                     .reconnect(Retry.fixedDelay(2, Duration.ofSeconds(2)))
         )
         .dataMimeType(MimeTypeUtils.APPLICATION_JSON)
-        .tcp("localhost", 8000);
+        .tcp("localhost", serverPort);
   }
 }

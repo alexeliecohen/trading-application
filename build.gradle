@@ -48,6 +48,10 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:kafka'
     testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'io.rest-assured:rest-assured:5.1.1'
+    testImplementation 'io.rest-assured:json-schema-validator:5.1.1'
+    testImplementation 'io.rest-assured:json-path:5.1.1'
+    testImplementation 'io.rest-assured:xml-path:5.1.1'
 }
 
 dependencyManagement {

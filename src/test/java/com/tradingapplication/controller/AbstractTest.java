@@ -18,9 +18,8 @@ public abstract class AbstractTest {
   private int serverPort;
   @Autowired
   private RSocketRequester.Builder builder;
-
-  protected RSocketRequester createRSocketRequester() {
-    RSocketStrategies strategies = RSocketStrategies.builder()
+  protected RSocketStrategies createRSocketStrategy() {
+   return  RSocketStrategies.builder()
         .encoders(encoders -> {
           encoders.add(new Jackson2JsonEncoder());
         })
@@ -28,10 +27,12 @@ public abstract class AbstractTest {
           decoders.add(new Jackson2JsonDecoder());
         })
         .build();
+  }
+  protected RSocketRequester createRSocketRequester() {
     RSocketRequester.Builder builder = RSocketRequester.builder();
 
     return this.builder
-        .rsocketStrategies(strategies)
+        .rsocketStrategies(createRSocketStrategy())
         .rsocketConnector(
             rSocketConnector ->
                 rSocketConnector

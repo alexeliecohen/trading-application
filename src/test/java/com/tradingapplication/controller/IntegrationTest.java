@@ -1,8 +1,11 @@
 package com.tradingapplication.controller;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
@@ -13,14 +16,14 @@ public abstract class IntegrationTest {
   protected String uri;
   protected static int INVALID_ID = 9999;
 
-//  public static void postgreSqlProperties(
-//      @NotNull DynamicPropertyRegistry registry,
-//      PostgreSQLContainer postgrest) {
-//
-//    registry.add("spring.datasource.url", postgrest::getJdbcUrl);
-//    registry.add("spring.datasource.username", postgrest::getUsername);
-//    registry.add("spring.datasource.password", postgrest::getPassword);
-//  }
+  public static void postgreSqlProperties(
+      @NotNull DynamicPropertyRegistry registry,
+      PostgreSQLContainer postgrest) {
+
+    registry.add("spring.datasource.url", postgrest::getJdbcUrl);
+    registry.add("spring.datasource.username", postgrest::getUsername);
+    registry.add("spring.datasource.password", postgrest::getPassword);
+  }
 
   @BeforeEach
   public void initialiseRestAssuredMockMvcStandalone() {

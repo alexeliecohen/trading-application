@@ -4,8 +4,10 @@ import com.tradingapplication.dto.request.CurrencyPairRequest;
 import com.tradingapplication.model.currency.CurrencyPair;
 import com.tradingapplication.service.CurrencyPairService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,14 +15,21 @@ import reactor.core.publisher.Mono;
 @Controller
 public class CurrencyPairRSocketController {
 
-  private CurrencyPairService currencyPairService;
-  public CurrencyPairRSocketController() {
-    currencyPairService = new CurrencyPairService();
+  private final CurrencyPairService currencyPairService;
+
+  public CurrencyPairRSocketController(CurrencyPairService currencyPairService) {
+    this.currencyPairService = currencyPairService;
   }
 
   @MessageMapping("currencyPairData")
   public Flux<CurrencyPair> getCurrencyPairs() {
-    return Flux.fromStream(currencyPairService.getAllCurrencyPair());
+    return currencyPairService.getAllCurrencyPair();
+  }
+
+  @MessageMapping("addCurrencyPair")
+  public Mono<CurrencyPair> addCurrencyPair(CurrencyPairRequest currencyPairRequest) {
+    log.info("RSocket Controller Received Request " + currencyPairRequest);
+    return currencyPairService.addCurrencyPair(currencyPairRequest);
   }
 
   @MessageMapping("getCurrencyPair")
@@ -30,7 +39,6 @@ public class CurrencyPairRSocketController {
     log.info("Received currency pair id: " + 0);
     log.info(String.format(
         "Received request %d, %s, %.2f, %d",
-        currencyPairRequest.id(),
         currencyPairRequest.name(),
         currencyPairRequest.rate(),
         currencyPairRequest.amount()
@@ -42,5 +50,10 @@ public class CurrencyPairRSocketController {
   public Mono<String> hello(String data) {
     log.info(String.format("Received %s Request", data));
     return Mono.just("Hello Back!");
+  }
+
+  @MessageExceptionHandler
+  public Mono<CurrencyPair> handleException(Exception e) {
+    return Mono.just(CurrencyPair.fromException(e));
   }
 }

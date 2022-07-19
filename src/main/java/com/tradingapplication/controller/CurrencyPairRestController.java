@@ -47,11 +47,22 @@ public class CurrencyPairRestController {
   }
 
   @PostMapping()
-  public Publisher<String> hello(@RequestBody String message) {
-    log.info(message);
+  public Publisher<CurrencyPairResponse> addCurrencyPair(@RequestBody CurrencyPairRequest currencyPairRequest) {
+    log.info("REST controller received request " + currencyPairRequest);
     return rSocketRequester
-        .route("hello")
-        .data(message)
-        .retrieveMono(String.class);
+        .route("addCurrencyPair")
+        .data(currencyPairRequest)
+        .retrieveMono(CurrencyPair.class)
+        .map(Mapper::map)
+        .log();
   }
+
+//  @PostMapping()
+//  public Publisher<String> hello(@RequestBody String message) {
+//    log.info(message);
+//    return rSocketRequester
+//        .route("hello")
+//        .data(message)
+//        .retrieveMono(String.class);
+//  }
 }
